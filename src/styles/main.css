@@ -2053,13 +2053,13 @@
 }
 
 .main-content-padded.large-screen {
-    padding-top: 136px;
+    padding-top: 6rem;
 }
 
 @media (min-width: 1024px) {
     .main-content-padded {
-        padding-top: 8.5rem;
-        /* 136px */
+        padding-top: 6rem;
+        /* Updated from 136px (8.5rem) after top bar removal */
     }
 }
 

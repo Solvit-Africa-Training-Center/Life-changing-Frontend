@@ -2,6 +2,7 @@ import { Menu, X, ChevronDown, Users, Target, Compass, BookOpen, FileText, Heart
 import { useState } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import logo from '@/assets/logo.jpg';
 
 interface HeaderProps {
   currentPage: string;
@@ -110,10 +111,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         }
       ]
     },
-    {
-      label: 'Resources',
-      id: 'resources'
-    },
+
     {
       label: 'Get Involved',
       variant: 'mega',
@@ -183,55 +181,21 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`flex flex-col w-full font-sans site-header-fixed transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''}`}
     >
-      {/* Top Bar - Animates height/opacity on scroll */}
-      <motion.div
-        className="bg-accent text-white hidden lg:block border-b border-white/5 overflow-hidden"
-        initial={false}
-        animate={{
-          height: isScrolled ? 0 : 'auto',
-          opacity: isScrolled ? 0 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
-        <div className="py-1.5">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-[13px]">
-            <div className="flex items-center gap-6 font-medium">
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-secondary" />
-                <span>+123 456 7890</span>
-              </div>
-              <div className="w-px h-3 bg-white/20"></div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-secondary" />
-                <span>email@example.com</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-secondary transition-colors"><Facebook className="w-3.5 h-3.5" /></a>
-              <a href="#" className="hover:text-secondary transition-colors"><Twitter className="w-3.5 h-3.5" /></a>
-              <a href="#" className="hover:text-secondary transition-colors"><Instagram className="w-3.5 h-3.5" /></a>
-              <a href="#" className="hover:text-secondary transition-colors"><Youtube className="w-3.5 h-3.5" /></a>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+
 
       {/* Main Header */}
       <header className={`bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-0' : ''}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`flex justify-between items-center transition-all duration-300 ${isScrolled ? 'h-14' : 'h-18'}`}>
-            {/* Logo */}
             <div
-              className="flex items-center cursor-pointer gap-2 shrink-0"
+              className={`flex items-center cursor-pointer gap-2 shrink-0 ${isScrolled ? 'mt-1' : 'mt-2'}`}
               onClick={() => onNavigate('home')}
             >
-              <div className={`flex items-center justify-center rounded-full bg-primary shadow-sm ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'} transition-all duration-300`}>
-                <Target className="text-white w-6 h-6" strokeWidth={2.5} />
-              </div>
-              <div className="flex flex-col">
-                <span className={`font-extrabold text-accent tracking-tight leading-none font-heading transition-all duration-300 ${isScrolled ? 'text-lg' : 'text-xl'}`}>LCEO<span className="text-secondary">.</span></span>
-                <span className="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Nonprofit</span>
-              </div>
+              <img
+                src={logo}
+                alt="LCEO Logo"
+                className={`object-contain transition-all duration-300 ${isScrolled ? 'h-12' : 'h-16'}`}
+              />
             </div>
 
             {/* Desktop Navigation */}

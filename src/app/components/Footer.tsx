@@ -1,5 +1,6 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock, ArrowUp, ChevronRight, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logo from '@/assets/logo.jpg';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -47,13 +48,7 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Column 1: Logo & About */}
           <div className="footer-col-1-brand">
             <div className="footer-logo-link" onClick={() => onNavigate('home')}>
-              <div className="footer-logo-icon">
-                <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M25 45L22.8 42.8C11.8 32.6 4.5 25.8 4.5 17.5C4.5 10.7 9.7 5.5 16.5 5.5C20.3 5.5 24 7.3 25 10.1C26 7.3 29.7 5.5 33.5 5.5C40.3 5.5 45.5 10.7 45.5 17.5C45.5 25.8 38.2 32.6 27.2 42.8L25 45Z" fill="var(--primary)" />
-                  <path d="M15 25C15 25 20 15 25 25" stroke="#122f2b" strokeWidth="3" strokeLinecap="round" />
-                </svg>
-              </div>
-              <span className="footer-logo-text">LCEO<span className="footer-logo-dot">.</span></span>
+              <img src={logo} alt="LCEO Logo" className="h-16 w-auto object-contain" />
             </div>
             <p className="footer-desc">
               LCEO non-profit organization dedicated to creating lasting impact through clean water, free education, healthcare, and community development.
