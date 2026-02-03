@@ -1558,12 +1558,12 @@
 .footer-bg-overlay {
     position: absolute;
     inset: 0;
-    opacity: 0.1;
+    opacity: 0.15;
     pointer-events: none;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/23/World_map_dots.png');
+    background-image: url('/footer-bg.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 80%;
+    background-size: cover;
 }
 
 .newsletter-wrapper {

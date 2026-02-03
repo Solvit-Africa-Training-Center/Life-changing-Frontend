@@ -155,22 +155,6 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
       </div>
-
-      {/* Bottom Bar */}
-      <div className="footer-bottom-bar">
-        <div className="footer-bottom-content">
-          <p className="copyright-text">
-            © {new Date().getFullYear()} LCEO Nonprofit. All Rights Reserved
-          </p>
-          <button
-            onClick={scrollToTop}
-            className="scroll-top-btn"
-            aria-label="Scroll to top"
-          >
-            <ArrowUp size={20} strokeWidth={3} />
-          </button>
-        </div>
-      </div>
     </footer>
   );
 }
