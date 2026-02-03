@@ -55,7 +55,7 @@ export function HomePage() {
       <HeroCarousel />
 
       {/* Introduction Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-40 md:py-60 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold mb-6 text-slate-900">Who We Are</h2>
@@ -72,6 +72,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Spacer for Separation */}
+      <div className="h-40 bg-white w-full"></div>
 
       {/* Impact Statistics */}
       <section className="py-20 bg-white">
