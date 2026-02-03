@@ -1,0 +1,175 @@
+:root {
+  --font-size: 17px;
+  --line-height: 28px;
+
+  /* New LCEO Branding Color */
+  --primary: #4fb1a1;
+  --primary-foreground: #ffffff;
+
+  --secondary: #4fb1a1;
+  /* Updated from yellow to teal */
+  --secondary-foreground: #122f2b;
+
+  --accent: #122f2b;
+  /* Dark Green/Black for contrast */
+  --accent-foreground: #ffffff;
+
+  --background: #ffffff;
+  --foreground: #667470;
+  /* Body Text Match */
+
+  --card: #ffffff;
+  --card-foreground: #667470;
+
+  --popover: #ffffff;
+  --popover-foreground: #122f2b;
+
+  --muted: #F8F9FA;
+  --muted-foreground: #889390;
+
+  --destructive: #DC3545;
+  --destructive-foreground: #ffffff;
+
+  --success: #28A745;
+  --success-foreground: #ffffff;
+
+  --border: rgba(18, 47, 43, 0.1);
+  --input: rgba(18, 47, 43, 0.2);
+  --input-background: #ffffff;
+
+  --switch-background: #cbced4;
+
+  --ring: #4fb1a1;
+  --radius: 0.25rem;
+
+  --chart-1: #00705d;
+  --chart-2: #ffc105;
+  --chart-3: #122f2b;
+  --chart-4: #28A745;
+  --chart-5: #667470;
+
+  --sidebar: #f8f9fa;
+  --sidebar-foreground: #122f2b;
+  --sidebar-primary: #4fb1a1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e9ecef;
+  --sidebar-accent-foreground: #122f2b;
+  --sidebar-border: #dee2e6;
+  --sidebar-ring: #4fb1a1;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 600;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #122f2b;
+    --foreground: #e0e0e0;
+    --card: #0e2522;
+    --card-foreground: #e0e0e0;
+    --popover: #0e2522;
+    --popover-foreground: #e0e0e0;
+    --primary: #5bc4b3;
+    --primary-foreground: #ffffff;
+    --secondary: #ffc105;
+    --secondary-foreground: #122f2b;
+    --muted: #1a423d;
+    --muted-foreground: #a0aead;
+    --accent: #2c5c55;
+    --accent-foreground: #ffffff;
+    --destructive: #ff6b6b;
+    --destructive-foreground: #ffffff;
+    --border: #2c5c55;
+    --input: #2c5c55;
+    --ring: #00967d;
+    --chart-1: #00967d;
+    --chart-2: #ffc105;
+  }
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Open Sans', sans-serif;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  letter-spacing: -0.2px;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+  color: #122f2b;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ffffff;
+  }
+}
+
+h1 {
+  font-size: 45px;
+  line-height: 55px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 42px;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 34px;
+  margin-bottom: 14px;
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 12px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
