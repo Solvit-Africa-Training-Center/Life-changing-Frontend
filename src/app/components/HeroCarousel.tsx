@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const slides = [
     {
         id: 1,
-        image: "https://www.skees.org/story/west-african-girls-defined-solutions-lives-batonga-foundation-finds/",
+        image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=1920&auto=format&fit=crop",
         subtitle: "School Facilitation Support!",
         title: "Education for a Brighter Future",
         description: "School Facilitation Support removes barriers to education by assisting girls at risk of dropping out and those who have already left school.",

@@ -185,6 +185,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
+      {/* Explicit Spacer */}
+      <div className="h-40 w-full bg-white"></div>
+
       {/* What We Do Cards Section based on User Request */}
 
 
