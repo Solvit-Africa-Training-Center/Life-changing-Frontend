@@ -7,30 +7,30 @@ import { Link } from 'react-router-dom';
 const slides = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1563132337-f159f484226c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwd29tYW4lMjBlbnRyZXByZW5ldXJ8ZW58MXx8fHwxNzY5MDI3ODE4fDA&ixlib=rb-4.1.0&q=80&w=1920",
-        subtitle: "Help The People In Need!",
-        title: "Unlocking Potential, Empowering Lives",
-        description: "Transforming lives of vulnerable young women and girls in Rwanda through education, entrepreneurship, and mental resilience.",
-        cta: "Join Our Impact Circle",
+        image: "https://www.skees.org/story/west-african-girls-defined-solutions-lives-batonga-foundation-finds/",
+        subtitle: "School Facilitation Support!",
+        title: "Education for a Brighter Future",
+        description: "School Facilitation Support removes barriers to education by assisting girls at risk of dropping out and those who have already left school.",
+        cta: "Make A Donation",
         link: "/donate"
     },
     {
         id: 2,
         image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1920&auto=format&fit=crop",
-        subtitle: "Education for a Brighter Future",
-        title: "Your Small Help Makes World Better",
-        description: "Giving is not just about making a donation. It's about making a difference one child, one life, one future at a time.",
+        subtitle: "Safe Spaces and Mentorship",
+        title: "Mentorship",
+        description: "Safe Spaces and Mentorship creates supportive environments where girls receive guidance, life skills, and psychosocial support through clubs formed in and out of school. These spaces build confidence, resilience, and protection.",
         cta: "Make A Donation",
         link: "/donate"
     },
     {
         id: 3,
         image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=1920&auto=format&fit=crop",
-        subtitle: "Building Resilience",
-        title: "Creating Sustainable Change Together",
-        description: "We believe in the power of community and mentorship to build strong, independent futures for young women.",
-        cta: "Get Involved",
-        link: "/get-involved"
+        subtitle: "SRHR Pad Box Project",
+        title: "Pad Box Project",
+        description: "The SRHR Pad Box Project addresses school dropout, absenteeism, and vulnerability to exploitation among adolescent girls by combining menstrual health support with Sexual and Reproductive Health and Rights (SRHR) information.",
+        cta: "Make A Donation",
+        link: "/donate"
     }
 ];
 

@@ -113,7 +113,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </div>
 
       {/* Introduction Section */}
-      <section className="pb-24 md:pb-60 bg-white overflow-hidden" style={{ marginTop: '100px' }}>
+      <section className="pb-40 md:pb-96 bg-white overflow-hidden" style={{ marginTop: '100px' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 items-center gap-8">
 
@@ -154,8 +154,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="grid grid-cols-2 gap-3 max-w-sm">
-                <div className="space-y-3 pt-8">
+              <div className="grid grid-cols-2 gap-0 max-w-sm">
+                <div className="space-y-0 pt-8">
                   <img
                     src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=300&fit=crop"
                     alt="Child Smiling"
@@ -167,7 +167,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     className="w-full aspect-square object-cover shadow-md hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-0">
                   <img
                     src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?q=80&w=300&fit=crop"
                     alt="Happy Kids"
@@ -189,7 +189,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
 
       {/* Success Stories Carousel */}
-      <section className="py-40 bg-muted relative overflow-hidden">
+      <section className="py-40 md:py-80 bg-muted relative overflow-hidden mt-32">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
