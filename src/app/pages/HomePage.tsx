@@ -13,6 +13,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import { VolunteerSection } from '@/app/components/VolunteerSection';
 import { useState } from 'react';
 
 export function HomePage() {
@@ -237,6 +238,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <VolunteerSection />
 
       <Footer />
     </div>
