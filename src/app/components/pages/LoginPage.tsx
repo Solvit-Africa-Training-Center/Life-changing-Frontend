@@ -268,7 +268,7 @@ export function LoginPage({ role, onNavigate }: LoginPageProps) {
                   fontSize: '14px',
                   fontWeight: '600',
                   letterSpacing: '0.3px',
-                  marginBottom: '0.75rem',
+                  marginBottom: '1rem',
                   display: 'block'
                 }}
               >
@@ -284,8 +284,8 @@ export function LoginPage({ role, onNavigate }: LoginPageProps) {
                   required
                   disabled={isLoading}
                   style={{
-                    padding: '0.875rem 1rem',
-                    paddingRight: '2.75rem',
+                    padding: '1rem 1rem',
+                    paddingRight: '3.75rem',
                     borderRadius: '0.75rem',
                     border: `2px solid #e0e0e0`,
                     fontSize: '15px',
@@ -294,7 +294,7 @@ export function LoginPage({ role, onNavigate }: LoginPageProps) {
                   }}
                   onFocus={(e) => {
                     e.currentTarget.style.borderColor = PRIMARY_GREEN;
-                    e.currentTarget.style.boxShadow = `0 0 0 3px ${PRIMARY_GREEN}20`;
+                    e.currentTarget.style.boxShadow = `0 0 0 6px ${PRIMARY_GREEN}20`;
                   }}
                   onBlur={(e) => {
                     e.currentTarget.style.borderColor = '#e0e0e0';
@@ -304,40 +304,60 @@ export function LoginPage({ role, onNavigate }: LoginPageProps) {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 transition-colors"
-                  style={{ color: PRIMARY_GREEN }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = DARK_ORANGE)}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = PRIMARY_GREEN)}
+                  className="absolute top-1/2 -translate-y-1/2 transition-colors"
+                  style={{
+                    right: 12,
+                    background: 'transparent',
+                    border: 'none',
+                    padding: 6,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: isLoading ? 'not-allowed' : 'pointer',
+                    color: showPassword ? PRIMARY_GREEN : '#889390',
+                    opacity: showPassword ? 1 : 0.85
+                  }}
+                  onMouseEnter={(e) => { if (!isLoading) e.currentTarget.style.color = DARK_ORANGE; }}
+                  onMouseLeave={(e) => { if (!isLoading) e.currentTarget.style.color = showPassword ? PRIMARY_GREEN : '#889390'; }}
                   disabled={isLoading}
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
-            {/* Sign In Button */}
+            {/* Sign In Button (reduced width, centered) */}
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 rounded-lg font-semibold transition-all duration-300"
+              className="block rounded-lg font-semibold transition-all duration-300"
               style={{
+                width: '62%',
+                margin: '0 auto 2.25rem',
+                padding: '0.95rem 0',
                 backgroundColor: PRIMARY_GREEN,
                 color: 'white',
-                letterSpacing: '0.75px',
+                letterSpacing: '0.85px',
                 fontSize: '15px',
                 cursor: isLoading ? 'not-allowed' : 'pointer',
-                opacity: isLoading ? 0.7 : 1,
-                marginBottom: '2rem'
+                opacity: isLoading ? 0.85 : 1,
+                boxShadow: '0 6px 18px rgba(79,177,161,0.08)'
               }}
               onMouseEnter={(e) => {
                 if (!isLoading) {
-                  e.currentTarget.style.backgroundColor = DARK_ORANGE;
+                  e.currentTarget.style.background = `linear-gradient(90deg, ${DARK_ORANGE}, ${PRIMARY_GREEN})`;
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isLoading) {
-                  e.currentTarget.style.backgroundColor = PRIMARY_GREEN;
+                  e.currentTarget.style.background = PRIMARY_GREEN;
                 }
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.boxShadow = `0 0 0 6px ${PRIMARY_GREEN}20`;
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.boxShadow = '0 6px 18px rgba(79,177,161,0.08)';
               }}
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
