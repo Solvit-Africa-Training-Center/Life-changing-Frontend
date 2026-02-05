@@ -2,16 +2,17 @@ import { useState } from 'react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { Alert, AlertDescription } from '@/app/components/ui/alert';
 import { useAuth, UserRole } from '@/app/components/AuthContext';
-import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/app/components/ui/tabs';
+import { ArrowLeft, Eye, EyeOff, Mail, Phone } from 'lucide-react';
 
 interface LoginPageProps {
   role: UserRole;
   onNavigate: (page: string) => void;
 }
+
+const PRIMARY_GREEN = '#4fb1a1';
+const DARK_ORANGE = '#ff8c42';
 
 export function LoginPage({ role, onNavigate }: LoginPageProps) {
   const { login } = useAuth();
@@ -67,160 +68,346 @@ export function LoginPage({ role, onNavigate }: LoginPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-white to-accent/5 flex items-center justify-center px-4 py-12">
+    <div 
+      className="min-h-screen flex items-center justify-center px-4 py-12"
+      style={{ background: `linear-gradient(135deg, ${PRIMARY_GREEN}15 0%, rgba(255,255,255,1) 50%, rgba(255,140,66,0.08) 100%)` }}
+    >
       <div className="w-full max-w-md">
         {/* Back button */}
         <button
           onClick={() => onNavigate('home')}
-          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
+          className="flex items-center gap-2 text-sm mb-10 transition-colors"
+          style={{ color: '#667470' }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = PRIMARY_GREEN)}
+          onMouseLeave={(e) => (e.currentTarget.style.color = '#667470')}
         >
           <ArrowLeft size={16} />
           Back to Home
         </button>
 
-        <Card className="border-2">
-          <CardHeader className="space-y-2">
-            {/* Logo */}
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-2xl">L</span>
-              </div>
-            </div>
-            
-            <CardTitle className="text-2xl text-center">
+        <div 
+          className="rounded-2xl p-8 shadow-lg"
+          style={{ 
+            backgroundColor: '#ffffff',
+            boxShadow: '0 10px 40px rgba(79, 177, 161, 0.08)'
+          }}
+        >
+          {/* Calm spacing at top - no logo */}
+          <div style={{ marginBottom: '3rem' }}>
+            <h1 
+              className="text-3xl font-semibold text-center"
+              style={{ 
+                color: PRIMARY_GREEN,
+                letterSpacing: '0.75px',
+                marginBottom: '1rem'
+              }}
+            >
               {roleLabels[role!]} Login
-            </CardTitle>
-            <CardDescription className="text-center">
+            </h1>
+            <p 
+              className="text-center text-base"
+              style={{ 
+                color: '#667470',
+                lineHeight: '1.6',
+                letterSpacing: '0.25px'
+              }}
+            >
               {roleDescriptions[role!]}
-            </CardDescription>
-          </CardHeader>
+            </p>
+          </div>
 
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
+          <form onSubmit={handleSubmit} className="space-y-0">
+            {error && (
+              <div 
+                className="mb-6 p-4 rounded-lg flex items-start gap-3"
+                style={{ backgroundColor: 'rgba(220, 53, 69, 0.1)' }}
+              >
+                <div 
+                  className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
+                  style={{ backgroundColor: '#DC3545', color: 'white', fontSize: '12px', fontWeight: 'bold' }}
+                >
+                  !
+                </div>
+                <p style={{ color: '#DC3545', fontSize: '14px', lineHeight: '1.5' }}>
+                  {error}
+                </p>
+              </div>
+            )}
 
-              {/* Show tabs only for beneficiaries */}
-              {role === 'beneficiary' ? (
-                <Tabs value={loginMethod} onValueChange={(v) => setLoginMethod(v as 'email' | 'phone')}>
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="email">Email</TabsTrigger>
-                    <TabsTrigger value="phone">Phone Number</TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="email" className="space-y-2 mt-4">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      disabled={isLoading}
-                    />
-                  </TabsContent>
-                  
-                  <TabsContent value="phone" className="space-y-2 mt-4">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="0788123456"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                      disabled={isLoading}
-                    />
-                  </TabsContent>
-                </Tabs>
+            {/* Login Method Selector - Pill Style Toggle */}
+            {role === 'beneficiary' && (
+              <div style={{ marginBottom: '2.5rem' }}>
+                <div className="flex gap-3">
+                  {['email', 'phone'].map((method) => (
+                    <button
+                      key={method}
+                      type="button"
+                      onClick={() => setLoginMethod(method as 'email' | 'phone')}
+                      className="flex-1 py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2"
+                      style={{
+                        backgroundColor: loginMethod === method ? PRIMARY_GREEN : 'transparent',
+                        color: loginMethod === method ? 'white' : '#667470',
+                        border: loginMethod === method ? `2px solid ${PRIMARY_GREEN}` : `2px solid #e0e0e0`,
+                        letterSpacing: '0.5px',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (loginMethod !== method) {
+                          e.currentTarget.style.borderColor = DARK_ORANGE;
+                          e.currentTarget.style.color = DARK_ORANGE;
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (loginMethod !== method) {
+                          e.currentTarget.style.borderColor = '#e0e0e0';
+                          e.currentTarget.style.color = '#667470';
+                        }
+                      }}
+                    >
+                      {method === 'email' ? <Mail size={18} /> : <Phone size={18} />}
+                      <span>{method === 'email' ? 'Email' : 'Phone'}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Email/Phone Input */}
+            <div style={{ marginBottom: '2rem' }}>
+              {role === 'beneficiary' && loginMethod === 'phone' ? (
+                <div>
+                  <Label 
+                    htmlFor="phone"
+                    style={{ 
+                      color: '#122f2b',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      letterSpacing: '0.3px',
+                      marginBottom: '0.75rem',
+                      display: 'block'
+                    }}
+                  >
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="0788 123 456"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    disabled={isLoading}
+                    style={{
+                      padding: '0.875rem 1rem',
+                      borderRadius: '0.75rem',
+                      border: `2px solid #e0e0e0`,
+                      fontSize: '15px',
+                      color: '#122f2b',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.borderColor = PRIMARY_GREEN;
+                      e.currentTarget.style.boxShadow = `0 0 0 3px ${PRIMARY_GREEN}20`;
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = '#e0e0e0';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  />
+                </div>
               ) : (
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                <div>
+                  <Label 
+                    htmlFor="email"
+                    style={{ 
+                      color: '#122f2b',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      letterSpacing: '0.3px',
+                      marginBottom: '0.75rem',
+                      display: 'block'
+                    }}
+                  >
+                    Email Address
+                  </Label>
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="your.email@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={isLoading}
+                    style={{
+                      padding: '0.875rem 1rem',
+                      borderRadius: '0.75rem',
+                      border: `2px solid #e0e0e0`,
+                      fontSize: '15px',
+                      color: '#122f2b',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onFocus={(e) => {
+                      e.currentTarget.style.borderColor = PRIMARY_GREEN;
+                      e.currentTarget.style.boxShadow = `0 0 0 3px ${PRIMARY_GREEN}20`;
+                    }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = '#e0e0e0';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
                   />
                 </div>
               )}
+            </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    disabled={isLoading}
-                    className="pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                    disabled={isLoading}
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isLoading}
+            {/* Password Input */}
+            <div style={{ marginBottom: '2.5rem' }}>
+              <Label 
+                htmlFor="password"
+                style={{ 
+                  color: '#122f2b',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  letterSpacing: '0.3px',
+                  marginBottom: '0.75rem',
+                  display: 'block'
+                }}
               >
-                {isLoading ? 'Signing in...' : 'Sign In'}
-              </Button>
-
-              {/* Demo credentials info */}
-              <div className="mt-6 p-4 bg-muted/50 rounded-lg border border-border">
-                <p className="text-xs font-semibold text-foreground mb-2">Demo Credentials:</p>
-                <div className="text-xs text-muted-foreground space-y-1">
-                  {role === 'beneficiary' && loginMethod === 'phone' ? (
-                    <>
-                      <p><strong>Phone:</strong> 0788123456</p>
-                      <p><strong>Password:</strong> beneficiary123</p>
-                    </>
-                  ) : (
-                    <>
-                      <p><strong>Email:</strong> {role}@lceo.org</p>
-                      <p><strong>Password:</strong> {role}123</p>
-                    </>
-                  )}
-                </div>
-                <Button
+                Password
+              </Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  disabled={isLoading}
+                  style={{
+                    padding: '0.875rem 1rem',
+                    paddingRight: '2.75rem',
+                    borderRadius: '0.75rem',
+                    border: `2px solid #e0e0e0`,
+                    fontSize: '15px',
+                    color: '#122f2b',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = PRIMARY_GREEN;
+                    e.currentTarget.style.boxShadow = `0 0 0 3px ${PRIMARY_GREEN}20`;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e0e0e0';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                />
+                <button
                   type="button"
-                  variant="outline"
-                  className="mt-2 w-full"
-                  onClick={fillDemoCredentials}
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 transition-colors"
+                  style={{ color: PRIMARY_GREEN }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = DARK_ORANGE)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = PRIMARY_GREEN)}
+                  disabled={isLoading}
                 >
-                  Fill Demo Credentials
-                </Button>
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
               </div>
-            </form>
-          </CardContent>
-        </Card>
+            </div>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-muted-foreground">
-            Need a different account?{' '}
+            {/* Sign In Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3.5 rounded-lg font-semibold transition-all duration-300"
+              style={{
+                backgroundColor: PRIMARY_GREEN,
+                color: 'white',
+                letterSpacing: '0.75px',
+                fontSize: '15px',
+                cursor: isLoading ? 'not-allowed' : 'pointer',
+                opacity: isLoading ? 0.7 : 1,
+                marginBottom: '2rem'
+              }}
+              onMouseEnter={(e) => {
+                if (!isLoading) {
+                  e.currentTarget.style.backgroundColor = DARK_ORANGE;
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isLoading) {
+                  e.currentTarget.style.backgroundColor = PRIMARY_GREEN;
+                }
+              }}
+            >
+              {isLoading ? 'Signing in...' : 'Sign In'}
+            </button>
+
+            {/* Demo credentials info */}
+            <div 
+              className="p-5 rounded-xl border"
+              style={{ 
+                backgroundColor: 'rgba(79, 177, 161, 0.05)',
+                borderColor: 'rgba(79, 177, 161, 0.15)'
+              }}
+            >
+              <p 
+                className="text-sm font-semibold mb-3"
+                style={{ color: '#122f2b' }}
+              >
+                Demo Credentials:
+              </p>
+              <div className="text-sm space-y-1.5" style={{ color: '#667470', lineHeight: '1.5' }}>
+                {role === 'beneficiary' && loginMethod === 'phone' ? (
+                  <>
+                    <p><strong>Phone:</strong> 0788123456</p>
+                    <p><strong>Password:</strong> beneficiary123</p>
+                  </>
+                ) : (
+                  <>
+                    <p><strong>Email:</strong> {role}@lceo.org</p>
+                    <p><strong>Password:</strong> {role}123</p>
+                  </>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={fillDemoCredentials}
+                className="mt-4 w-full py-2.5 rounded-lg font-medium transition-all duration-300"
+                style={{
+                  backgroundColor: 'transparent',
+                  color: PRIMARY_GREEN,
+                  border: `2px solid ${PRIMARY_GREEN}`,
+                  letterSpacing: '0.5px',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = PRIMARY_GREEN;
+                  e.currentTarget.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = PRIMARY_GREEN;
+                }}
+              >
+                Fill Demo Credentials
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Footer links */}
+        <div className="mt-8 text-center">
+          <p style={{ color: '#667470', fontSize: '14px', lineHeight: '1.5' }}>
+            Don't have an account?{' '}
             <button
               onClick={() => onNavigate('home')}
-              className="text-primary hover:underline font-medium"
+              className="font-semibold transition-colors"
+              style={{ color: PRIMARY_GREEN, background: 'none', border: 'none', cursor: 'pointer' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = DARK_ORANGE)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = PRIMARY_GREEN)}
             >
-              View all login options
+            Register Here.
             </button>
           </p>
         </div>
