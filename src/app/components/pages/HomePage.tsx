@@ -191,53 +191,89 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* What We Do Cards Section based on User Request */}
 
 
-      {/* Success Stories Carousel */}
-      <section className="py-40 md:py-80 bg-muted relative overflow-hidden mt-32">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="var(--primary)" />
-          </svg>
-        </div>
+      {/* Stories of Transformation Section */}
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Subtle top divider gradient */}
+        <div 
+          className="absolute top-0 left-0 right-0 h-1"
+          style={{
+            background: `linear-gradient(90deg, transparent, #4fb1a1, transparent)`
+          }}
+        />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-24"
+            className="mb-20"
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-accent">Stories of Transformation</h2>
-            <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+            <h2 
+              className="text-4xl md:text-5xl font-bold mb-3 text-accent"
+              style={{ letterSpacing: '0.5px', lineHeight: '1.3' }}
+            >
+              Stories of Transformation
+            </h2>
+            <p 
+              className="text-lg text-gray-600 max-w-3xl"
+              style={{ letterSpacing: '0.3px', lineHeight: '1.6' }}
+            >
+              Real lives changed through opportunity and support
+            </p>
           </motion.div>
 
+          {/* Testimonial Card */}
           <div className="relative">
-            <Card className="overflow-hidden border-none shadow-2xl bg-white rounded-2xl">
+            <Card className="overflow-hidden border-none shadow-lg bg-white rounded-3xl">
               <CardContent className="p-0">
-                <div className="grid md:grid-cols-2 gap-0">
-                  <div className="relative h-64 md:h-80 overflow-hidden group">
+                <div className="grid md:grid-cols-5 gap-0">
+                  {/* Image - Left Side */}
+                  <div className="md:col-span-2 relative h-80 md:h-96 overflow-hidden group">
                     <img
                       src={testimonials[currentTestimonial].image}
                       alt={testimonials[currentTestimonial].name}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 rounded-3xl"
+                      style={{ margin: '0' }}
                     />
-                    <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
                   </div>
-                  <div className="p-10 md:p-14 flex flex-col justify-center bg-white relative">
-                    <div className="absolute top-6 left-8 text-9xl text-primary/5 font-serif select-none">"</div>
+                  
+                  {/* Content - Right Side */}
+                  <div className="md:col-span-3 p-10 md:p-12 flex flex-col justify-center bg-white relative">
                     <motion.div
                       key={currentTestimonial}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
                       className="relative z-10"
                     >
-                      <p className="text-xl md:text-2xl mb-8 italic text-gray-700 leading-normal font-serif">
-                        {testimonials[currentTestimonial].quote}
+                      {/* Quote */}
+                      <p 
+                        className="text-lg md:text-xl mb-8 italic font-light"
+                        style={{
+                          color: '#2d5f5a',
+                          lineHeight: '1.8',
+                          letterSpacing: '0.3px',
+                          maxWidth: '90%'
+                        }}
+                      >
+                        "{testimonials[currentTestimonial].quote}"
                       </p>
-                      <div className="border-l-4 border-secondary pl-4">
-                        <div className="font-bold text-xl text-accent">{testimonials[currentTestimonial].name}</div>
-                        <div className="text-primary font-medium">{testimonials[currentTestimonial].role}</div>
+                      
+                      {/* Name and Role */}
+                      <div style={{ marginTop: '2rem' }}>
+                        <div 
+                          className="font-bold text-xl mb-2"
+                          style={{ color: '#122f2b', letterSpacing: '0.3px' }}
+                        >
+                          {testimonials[currentTestimonial].name}
+                        </div>
+                        <div 
+                          className="text-sm font-medium"
+                          style={{ color: '#4fb1a1', letterSpacing: '0.2px', lineHeight: '1.5' }}
+                        >
+                          {testimonials[currentTestimonial].role}
+                        </div>
                       </div>
                     </motion.div>
                   </div>
@@ -245,28 +281,96 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </CardContent>
             </Card>
 
-            <div className="flex justify-center items-center gap-6 mt-10">
+            {/* Navigation Buttons */}
+            <div className="flex justify-center items-center gap-8 mt-12">
               <button
                 onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1"
+                className="group flex items-center justify-center transition-all duration-300"
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: '#ffffff',
+                  border: '2px solid #4fb1a1',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(79, 177, 161, 0.12)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#4fb1a1';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(79, 177, 161, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(79, 177, 161, 0.12)';
+                }}
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft 
+                  size={22} 
+                  style={{ 
+                    color: '#ff8c42',
+                    transition: 'all 0.3s ease'
+                  }}
+                  className="group-hover:text-white"
+                />
               </button>
-              <div className="flex gap-2">
+
+              {/* Dot Indicators */}
+              <div className="flex gap-3">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentTestimonial(index)}
-                    className={`h-3 rounded-full transition-all duration-300 ${index === currentTestimonial ? 'bg-secondary w-8' : 'bg-gray-300 w-3 hover:bg-primary/50'
-                      }`}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: index === currentTestimonial ? '32px' : '12px',
+                      height: '12px',
+                      backgroundColor: index === currentTestimonial ? '#4fb1a1' : '#e0e0e0',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (index !== currentTestimonial) {
+                        e.currentTarget.style.backgroundColor = '#c0d0cc';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (index !== currentTestimonial) {
+                        e.currentTarget.style.backgroundColor = '#e0e0e0';
+                      }
+                    }}
                   />
                 ))}
               </div>
+
               <button
                 onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all hover:-translate-y-1"
+                className="group flex items-center justify-center transition-all duration-300"
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: '#ffffff',
+                  border: '2px solid #4fb1a1',
+                  cursor: 'pointer',
+                  boxShadow: '0 6px 16px rgba(79, 177, 161, 0.12)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#4fb1a1';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(79, 177, 161, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(79, 177, 161, 0.12)';
+                }}
               >
-                <ChevronRight size={24} />
+                <ChevronRight 
+                  size={22} 
+                  style={{ 
+                    color: '#ff8c42',
+                    transition: 'all 0.3s ease'
+                  }}
+                  className="group-hover:text-white"
+                />
               </button>
             </div>
           </div>
