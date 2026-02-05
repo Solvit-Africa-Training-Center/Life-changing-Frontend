@@ -18,9 +18,9 @@ export function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
   const presetAmounts = {
-    monthly: [25000, 50000, 100000, 250000],
-    quarterly: [75000, 150000, 300000, 750000],
-    yearly: [300000, 600000, 120000, 3654444],
+    Monthly: [25000, 50000, 100000, 250000],
+    Quarterly: [75000, 150000, 300000, 750000],
+    Yearly: [300000, 600000, 120000, 3654444],
     'one-time': [25000, 52000, 123000, 523000]
   };
 
