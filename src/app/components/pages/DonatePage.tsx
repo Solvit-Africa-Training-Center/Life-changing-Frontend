@@ -18,25 +18,25 @@ export function DonatePage() {
   const [showThankYou, setShowThankYou] = useState(false);
 
   const presetAmounts = {
-    monthly: [25, 50, 100, 250],
-    quarterly: [75, 150, 300, 750],
-    yearly: [300, 600, 1200, 3000],
-    'one-time': [25, 50, 100, 500]
+    monthly: [25000, 50000, 100000, 250000],
+    quarterly: [75000, 150000, 300000, 750000],
+    yearly: [300000, 600000, 120000, 3654444],
+    'one-time': [25000, 52000, 123000, 523000]
   };
 
   const impactDescriptions = {
-    25: "School supplies and pad box for 1 girl for a month",
-    50: "Business starter kit with tools and initial inventory",
-    75: "School supplies for 1 girl for 3 months",
-    100: "Full monthly support for 1 beneficiary across all programs",
-    150: "Business starter kit and 3 months of mentorship",
-    250: "Support 2 beneficiaries with comprehensive services",
-    300: "Annual school support for 1 girl",
-    500: "Launch 5 businesses through IkiraroBiz",
-    600: "Annual support for 1 beneficiary",
-    750: "Support 5 beneficiaries for 3 months",
-    1200: "Annual comprehensive support for 1 beneficiary",
-    3000: "Transform 2 lives with full annual support"
+    25000: "School supplies and pad box for 1 girl for a month",
+    50000: "Business starter kit with tools and initial inventory",
+    75000: "School supplies for 1 girl for 3 months",
+    100000: "Full monthly support for 1 beneficiary across all programs",
+    150000: "Business starter kit and 3 months of mentorship",
+    250000: "Support 2 beneficiaries with comprehensive services",
+    300000: "Annual school support for 1 girl",
+    500000: "Launch 5 businesses through IkiraroBiz",
+    600000: "Annual support for 1 beneficiary",
+    750000: "Support 5 beneficiaries for 3 months",
+    1200000: "Annual comprehensive support for 1 beneficiary",
+    3654444: "Transform 2 lives with full annual support"
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -170,7 +170,7 @@ export function DonatePage() {
                             : 'border-gray-200 text-black hover:border-primary hover:text-primary bg-white'
                             }`}
                         >
-                          ${amount}
+                          Frw{amount}
                         </button>
                       ))}
                     </div>
@@ -198,7 +198,7 @@ export function DonatePage() {
                         <p className="font-bold text-black text-lg mb-1">Your Impact</p>
                         <p className="text-black leading-relaxed">
                           {impactDescriptions[selectedAmount as keyof typeof impactDescriptions] ||
-                            `Your contribution of ${donationType === 'one-time' ? 'a' : 'a monthly'} $${customAmount || selectedAmount} helps us provide essential resources where they are needed most.`}
+                            `Your contribution of ${donationType === 'one-time' ? 'a' : 'a monthly'} FRW${customAmount || selectedAmount} helps us provide essential resources where they are needed most.`}
                         </p>
                       </div>
                     </div>
@@ -268,7 +268,7 @@ export function DonatePage() {
                   </div>
 
                   <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 h-16 text-xl font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-black">
-                    Donate ${customAmount || selectedAmount}
+                    Donate FRW{customAmount || selectedAmount}
                   </Button>
 
                   <div className="mt-6 flex items-center justify-center gap-6 text-xs text-gray-500 font-bold uppercase tracking-wider">
